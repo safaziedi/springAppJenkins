@@ -7,7 +7,15 @@ pipeline{
         stage('Build maven'){
             steps{
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/safaziedi/springAppJenkins']])
-                sh 'mvn clean install'
+                bat 'mvn clean install'
+                //echo 'hello'
+            }
+        }
+        stage('Create docker image'){
+            steps{
+                script{
+                    bat 'docker build -t ziadisafa/springappjenkins .'
+                }
             }
         }
     }
