@@ -18,5 +18,16 @@ pipeline{
                 }
             }
         }
+        stage('Push docker image to docker hub'){
+            steps{
+                script{
+                    // withCredentials([string(credentialsId: 'dockerhubpwd2', variable: 'dockerhubpwd2')]) {
+                    //      bat 'docker login -u ziadisafa -p ${dockerhubpwd2}'
+                    // }
+                    bat 'docker login -u ziadisafa --password safaziadi07012001'
+                    bat 'docker push ziadisafa/springappjenkins'
+                }
+            }
+        }
     }
 }
